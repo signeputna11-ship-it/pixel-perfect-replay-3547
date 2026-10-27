@@ -61,14 +61,14 @@ const ShopIndexRoute = ShopIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopSlugRoute = ShopSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/$slug',
+  path: '/shop/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ShopSlugSampleRoute = ShopSlugSampleRouteImport.update({
-  id: '/$slug_/sample',
-  path: '/$slug/sample',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/$slug_/sample',
+  path: '/shop/$slug/sample',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -155,7 +155,9 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ReflectRoute: typeof ReflectRoute
   ResultPatternRoute: typeof ResultPatternRoute
+  ShopSlugRoute: typeof ShopSlugRoute
   ShopIndexRoute: typeof ShopIndexRoute
+  ShopSlugSampleRoute: typeof ShopSlugSampleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -218,17 +220,17 @@ declare module '@tanstack/react-router' {
     }
     '/shop/$slug': {
       id: '/shop/$slug'
-      path: '/$slug'
+      path: '/shop/$slug'
       fullPath: '/shop/$slug'
       preLoaderRoute: typeof ShopSlugRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
     '/shop/$slug_/sample': {
       id: '/shop/$slug_/sample'
-      path: '/$slug/sample'
+      path: '/shop/$slug/sample'
       fullPath: '/shop/$slug/sample'
       preLoaderRoute: typeof ShopSlugSampleRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -241,7 +243,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ReflectRoute: ReflectRoute,
   ResultPatternRoute: ResultPatternRoute,
+  ShopSlugRoute: ShopSlugRoute,
   ShopIndexRoute: ShopIndexRoute,
+  ShopSlugSampleRoute: ShopSlugSampleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
