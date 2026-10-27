@@ -10,9 +10,13 @@ export function Shell({ children }: { children: ReactNode }) {
           <span aria-hidden className="flex h-10 w-10 items-center justify-center rounded-full bg-forest font-display text-lg leading-none text-primary-foreground">
             S<span className="-ml-0.5 mt-2 text-base">C</span>
           </span>
-          <span className="font-display text-2xl leading-none">Signe <em>Coach</em></span>
+          <span className="hidden font-display text-2xl leading-none sm:inline">Signe <em>Coach</em></span>
         </Link>
-        <span className="eyebrow">The Self-Belief Lab</span>
+        <nav className="flex items-center gap-4 text-sm sm:gap-6">
+          <Link to="/audit" className="hover:underline underline-offset-4">Audit</Link>
+          <Link to="/shop" className="hover:underline underline-offset-4">Programmes</Link>
+          <Link to="/coaching" className="hidden hover:underline underline-offset-4 sm:inline">Coaching</Link>
+        </nav>
       </header>
       <div className="mx-auto max-w-5xl px-6"><div className="h-px bg-forest" /></div>
       <main className="mx-auto max-w-2xl px-6 pb-16 pt-6">{children}</main>

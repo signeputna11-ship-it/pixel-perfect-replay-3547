@@ -7,9 +7,9 @@ export const Route = createFileRoute("/audit")({
   head: () => ({
     meta: [
       { title: "The Audit — The Self-Belief Lab" },
-      { name: "description", content: "Five reflective questions on pricing, visibility, achievement, approval and success." },
+      { name: "description", content: "Ten reflective questions on pricing, visibility, boundaries, relationships and success." },
       { property: "og:title", content: "The Self-Belief Audit" },
-      { property: "og:description", content: "Five questions to discover your self-belief pattern." },
+      { property: "og:description", content: "Ten questions to discover your self-belief pattern." },
     ],
   }),
   component: Audit,
