@@ -105,7 +105,7 @@ export const QUESTIONS: Question[] = [
 export function scoreAnswers(answers: PatternId[]): PatternId {
   const counts = Object.fromEntries(PATTERN_ORDER.map((p) => [p, 0])) as Record<PatternId, number>;
   answers.forEach((a) => (counts[a] += 1));
-  return PATTERN_ORDER.reduce((best, p) => (counts[p] > counts[best] ? p : best), PATTERN_ORDER[0]);
+  return PATTERN_ORDER.reduce((best, p) => (counts[p] > counts[best] ? p : best), "perfectionist" as PatternId);
 }
 
 export function isPatternId(v: string): v is PatternId {

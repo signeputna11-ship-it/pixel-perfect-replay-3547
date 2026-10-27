@@ -19,7 +19,7 @@ function Audit() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<PatternId[]>([]);
   const navigate = useNavigate();
-  const q = QUESTIONS[step];
+  const q = QUESTIONS[step]!;
 
   const choose = (p: PatternId) => {
     const next = [...answers.slice(0, step), p];
