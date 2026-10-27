@@ -10,3 +10,7 @@
 - [ ] Audio player with your uploads (waiting on your recordings)
 - [x] Exercises give a personal reflection back
 - [x] Result → first lesson button, member dashboard preview (sample), audio placeholder, mobile menu, privacy page
+- [ ] Six reusable exercise types spread across the courses
+- [ ] Completion tracking, resume, per-course progress (browser storage, progress only)
+- [ ] Skip controls, copy/download summary, demo mode, keyboard access
+- [ ] Test checklist + verify all buttons/navigation
