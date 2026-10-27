@@ -29,16 +29,16 @@ function Result() {
       <section className="pt-8 fade-up">
         <p className="eyebrow">Your reflection pattern</p>
         <h1 className="mt-5 font-display text-5xl leading-tight">{p.name}</h1>
-        <p className="mt-2 font-display text-xl italic text-gold">"{p.tagline}"</p>
+        <p className="mt-2 font-display text-2xl italic">"{p.tagline}"</p>
         <p className="mt-8 leading-relaxed text-muted-foreground">{p.explanation}</p>
 
         <div className="mt-10 space-y-4">
-          <div className="card-soft">
-            <p className="eyebrow">Reflect</p>
+          <div className="card-soft border-0 bg-powder text-navy">
+            <p className="eyebrow text-navy">Reflect</p>
             <p className="mt-3 font-display text-2xl leading-snug">{p.question}</p>
           </div>
-          <div className="card-soft">
-            <p className="eyebrow">Try this</p>
+          <div className="card-soft border-0 bg-blush">
+            <p className="eyebrow text-forest">Try this</p>
             <p className="mt-3 leading-relaxed">{p.action}</p>
           </div>
         </div>

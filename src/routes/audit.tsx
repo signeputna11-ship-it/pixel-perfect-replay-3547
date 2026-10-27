@@ -38,7 +38,7 @@ function Audit() {
           </span>
         </div>
         <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted">
-          <div className="h-full bg-gold transition-all duration-500" style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }} />
+          <div className="h-full bg-forest transition-all duration-500" style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }} />
         </div>
         <div key={step} className="fade-up">
           <h1 className="mt-12 font-display text-3xl leading-snug sm:text-4xl">{q.prompt}</h1>
