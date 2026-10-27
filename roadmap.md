@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Redesign shop as an editorial collection; verify all four programme links and free audit on desktop and mobile
+- [x] Redesign shop as an editorial collection; verify all four programme links and free audit on desktop and mobile
 - [x] Apply mood board brand (fonts, palette, color blocks)
 - [x] Add founder photos to the site
 - [x] 10-question audit with product recommendations

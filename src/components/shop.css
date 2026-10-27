@@ -22,7 +22,7 @@
 .editorial-money .cover-headline { margin-top: 38px; width: 53%; font-size: 42px; }
 .editorial-money .cover-headline em { display: inline-block; background: var(--butter); padding-right: 7px; }
 .editorial-confidence .cover-photo { top: 88px; right: 24px; bottom: 34px; width: 49%; border-radius: 130px 130px 0 0; }
-.editorial-confidence .cover-headline { margin-top: 55px; max-width: 60%; font-size: 44px; }
+.editorial-confidence .cover-headline { margin-top: 55px; width: 44%; font-size: 40px; }
 .editorial-confidence .cover-headline em { display: inline-block; background: var(--powder); padding-right: 8px; }
 .editorial-love .cover-headline { text-align: center; }
 .editorial-love .cover-photo { width: 68%; right: 16%; top: 174px; bottom: 35px; transform: rotate(3deg); }
@@ -42,7 +42,7 @@
   .cover-collection { margin-left: 18px; font-size: 8px; }
   .cover-headline { margin-left: 18px; margin-right: 18px; font-size: 40px; }
   .editorial-money .cover-headline, .editorial-confidence .cover-headline { font-size: 36px; }
-  .editorial-confidence .cover-headline { max-width: 64%; }
+  .editorial-confidence .cover-headline { width: 40%; font-size: 32px; }
   .editorial-worth .cover-photo { top: 156px; }
   .editorial-love .cover-photo { top: 156px; width: 74%; right: 13%; }
   .cover-footnote { left: 18px; right: 18px; font-size: 8px; }
