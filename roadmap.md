@@ -14,3 +14,6 @@
 - [ ] Completion tracking, resume, per-course progress (browser storage, progress only)
 - [ ] Skip controls, copy/download summary, demo mode, keyboard access
 - [ ] Test checklist + verify all buttons/navigation
+- [ ] Course pages: headline, audience, challenges, curriculum accordion, included resources, time, Get Access, FAQ, creator, disclaimer
+- [ ] Use the uploaded curricula titles; Day 1 free, other days visibly locked (demo checkout)
+- [ ] Full written content for days 2+ (next phase — 31 lessons)
