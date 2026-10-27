@@ -8,9 +8,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "The Self-Belief Lab by Signe Coach — Discover your pattern" },
-      { name: "description", content: "A five-question reflection for women founders and leaders exploring confidence, pricing and visibility." },
+      { name: "description", content: "A ten-question reflection for women founders and leaders exploring confidence, pricing and visibility." },
       { property: "og:title", content: "The Self-Belief Lab by Signe Coach" },
       { property: "og:description", content: "You've built the skills. Now build the self-belief to match." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Index,
@@ -31,7 +33,8 @@ function Index() {
           <Link to="/audit" className="btn-primary mt-10">
             Discover My Pattern <span aria-hidden>→</span>
           </Link>
-          <p className="mt-4 text-xs text-muted-foreground">Five questions · No email required · Result shown instantly</p>
+          <Link to="/shop" className="btn-ghost ml-0 mt-3 sm:ml-3">See the programmes</Link>
+          <p className="mt-4 text-xs text-muted-foreground">Ten questions · No email required · Result shown instantly</p>
         </div>
         <div className="relative">
           <div className="absolute -right-3 -top-3 h-full w-full bg-blush" aria-hidden />
@@ -41,7 +44,7 @@ function Index() {
 
       <section className="mt-20 grid gap-4 sm:grid-cols-3">
         {[
-          ["01", "Answer five questions", "On pricing, visibility, achievement, approval and success.", "bg-blush"],
+          ["01", "Answer ten questions", "On pricing, visibility, boundaries, praise, rest and more.", "bg-blush"],
           ["02", "See your pattern", "A gentle, non-diagnostic reflection with one practical step.", "bg-powder"],
           ["03", "Reflect", "A short guided exercise to reframe one automatic thought.", "bg-butter"],
         ].map(([n, t, d, bg]) => (

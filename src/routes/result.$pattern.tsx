@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { FoundingCircle, Shell } from "@/components/Shell";
-import { isPatternId, PATTERNS } from "@/lib/audit";
+import { isPatternId, PATTERNS, RECOMMENDATIONS } from "@/lib/audit";
+import { getProduct } from "@/lib/products";
 
 export const Route = createFileRoute("/result/$pattern")({
   loader: ({ params }) => {
@@ -50,6 +51,21 @@ function Result() {
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link to="/reflect" className="btn-primary">Begin the reflection exercise →</Link>
           <Link to="/audit" className="btn-ghost">Retake the audit</Link>
+        </div>
+        <div className="mt-14">
+          <p className="eyebrow">Recommended for your pattern</p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {RECOMMENDATIONS[id].map((slug) => {
+              const r = getProduct(slug)!;
+              return (
+                <Link key={slug} to="/shop/$slug" params={{ slug }} className={`${r.color} block p-6 transition hover:-translate-y-0.5`}>
+                  <p className="eyebrow text-forest">{r.format} · €{r.price}</p>
+                  <h3 className="mt-4 font-display text-2xl">{r.name}</h3>
+                  <p className="mt-1 text-sm">{r.tagline}</p>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
       <FoundingCircle />

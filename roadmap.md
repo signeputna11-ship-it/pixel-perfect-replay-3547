@@ -1,3 +1,10 @@
 # Roadmap
 - [x] Apply mood board brand (fonts, palette, color blocks)
 - [x] Add founder photos to the site
+- [x] 10-question audit with product recommendations
+- [x] Shop, four product pages, coaching page
+- [x] Reusable lesson view + one free sample lesson per product
+- [ ] Member accounts, private journal, export/delete, privacy notice (waiting on go-ahead to enable Cloud)
+- [ ] Remaining lesson content (next phase)
+- [ ] Stripe checkout + server-side purchase access (waiting on Stripe setup)
+- [ ] Audio player with your uploads (waiting on your recordings)
