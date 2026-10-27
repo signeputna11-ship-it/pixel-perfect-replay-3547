@@ -1,7 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 
+const NAV = [
+  ["/audit", "Free audit"],
+  ["/shop", "Programmes"],
+  ["/dashboard", "Member preview"],
+  ["/coaching", "Coaching"],
+] as const;
+
 export function Shell({ children }: { children: ReactNode }) {
+  const [open, setOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="h-2 bg-forest" />
@@ -10,18 +18,34 @@ export function Shell({ children }: { children: ReactNode }) {
           <span aria-hidden className="flex h-10 w-10 items-center justify-center rounded-full bg-forest font-display text-lg leading-none text-primary-foreground">
             S<span className="-ml-0.5 mt-2 text-base">C</span>
           </span>
-          <span className="hidden font-display text-2xl leading-none sm:inline">Signe <em>Coach</em></span>
+          <span className="font-display text-2xl leading-none">Signe <em>Coach</em></span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm sm:gap-6">
-          <Link to="/audit" className="hover:underline underline-offset-4">Audit</Link>
-          <Link to="/shop" className="hover:underline underline-offset-4">Programmes</Link>
-          <Link to="/coaching" className="hidden hover:underline underline-offset-4 sm:inline">Coaching</Link>
+        <nav aria-label="Main" className="hidden items-center gap-6 text-sm sm:flex">
+          {NAV.map(([to, label]) => (
+            <Link key={to} to={to} className="underline-offset-4 hover:underline">{label}</Link>
+          ))}
         </nav>
+        <button
+          className="rounded-full border border-border px-4 py-2 text-sm sm:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? "Close" : "Menu"}
+        </button>
       </header>
+      {open && (
+        <nav id="mobile-menu" aria-label="Mobile" className="mx-auto max-w-5xl px-6 pb-4 sm:hidden">
+          {NAV.map(([to, label]) => (
+            <Link key={to} to={to} onClick={() => setOpen(false)} className="block border-t border-border py-3 font-display text-2xl">{label}</Link>
+          ))}
+        </nav>
+      )}
       <div className="mx-auto max-w-5xl px-6"><div className="h-px bg-forest" /></div>
       <main className="mx-auto max-w-2xl px-6 pb-16 pt-6">{children}</main>
       <footer className="mx-auto max-w-5xl border-t border-border px-6 py-8 text-center text-xs leading-relaxed text-muted-foreground">
-        Educational self-reflection, not a diagnostic assessment or a substitute for mental health care.
+        Educational self-reflection, not a diagnostic assessment or a substitute for mental health care.{" "}
+        <Link to="/privacy" className="underline underline-offset-4">Privacy & safety</Link>
       </footer>
     </div>
   );

@@ -49,7 +49,10 @@ function Result() {
         </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Link to="/reflect" className="btn-primary">Begin the reflection exercise →</Link>
+          <Link to="/shop/$slug/sample" params={{ slug: RECOMMENDATIONS[id][0]! }} className="btn-primary">
+            Start your first lesson free →
+          </Link>
+          <Link to="/reflect" className="btn-ghost">Begin the reflection exercise →</Link>
           <Link to="/audit" className="btn-ghost">Retake the audit</Link>
         </div>
         <div className="mt-14">

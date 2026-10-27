@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuditRouteImport } from './routes/audit'
 import { Route as CoachingRouteImport } from './routes/coaching'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReflectRouteImport } from './routes/reflect'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ResultPatternRouteImport } from './routes/result.$pattern'
@@ -31,6 +33,16 @@ const AuditRoute = AuditRouteImport.update({
 const CoachingRoute = CoachingRouteImport.update({
   id: '/coaching',
   path: '/coaching',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReflectRoute = ReflectRouteImport.update({
@@ -63,6 +75,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/audit': typeof AuditRoute
   '/coaching': typeof CoachingRoute
+  '/dashboard': typeof DashboardRoute
+  '/privacy': typeof PrivacyRoute
   '/reflect': typeof ReflectRoute
   '/shop': typeof ShopRouteWithChildren
   '/result/$pattern': typeof ResultPatternRoute
@@ -73,6 +87,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/audit': typeof AuditRoute
   '/coaching': typeof CoachingRoute
+  '/dashboard': typeof DashboardRoute
+  '/privacy': typeof PrivacyRoute
   '/reflect': typeof ReflectRoute
   '/shop': typeof ShopRouteWithChildren
   '/result/$pattern': typeof ResultPatternRoute
@@ -84,6 +100,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/audit': typeof AuditRoute
   '/coaching': typeof CoachingRoute
+  '/dashboard': typeof DashboardRoute
+  '/privacy': typeof PrivacyRoute
   '/reflect': typeof ReflectRoute
   '/shop': typeof ShopRouteWithChildren
   '/result/$pattern': typeof ResultPatternRoute
@@ -96,6 +114,8 @@ export interface FileRouteTypes {
     | '/'
     | '/audit'
     | '/coaching'
+    | '/dashboard'
+    | '/privacy'
     | '/reflect'
     | '/shop'
     | '/result/$pattern'
@@ -106,6 +126,8 @@ export interface FileRouteTypes {
     | '/'
     | '/audit'
     | '/coaching'
+    | '/dashboard'
+    | '/privacy'
     | '/reflect'
     | '/shop'
     | '/result/$pattern'
@@ -116,6 +138,8 @@ export interface FileRouteTypes {
     | '/'
     | '/audit'
     | '/coaching'
+    | '/dashboard'
+    | '/privacy'
     | '/reflect'
     | '/shop'
     | '/result/$pattern'
@@ -127,6 +151,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditRoute: typeof AuditRoute
   CoachingRoute: typeof CoachingRoute
+  DashboardRoute: typeof DashboardRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReflectRoute: typeof ReflectRoute
   ShopRoute: typeof ShopRouteWithChildren
   ResultPatternRoute: typeof ResultPatternRoute
@@ -153,6 +179,20 @@ declare module '@tanstack/react-router' {
       path: '/coaching'
       fullPath: '/coaching'
       preLoaderRoute: typeof CoachingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reflect': {
@@ -209,6 +249,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditRoute: AuditRoute,
   CoachingRoute: CoachingRoute,
+  DashboardRoute: DashboardRoute,
+  PrivacyRoute: PrivacyRoute,
   ReflectRoute: ReflectRoute,
   ShopRoute: ShopRouteWithChildren,
   ResultPatternRoute: ResultPatternRoute,
