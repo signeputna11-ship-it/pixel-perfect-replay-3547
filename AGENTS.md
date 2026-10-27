@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 - Course/lesson/exercise content lives in src/lib (products.ts, exercises.ts, audit.ts); components only render it — keeps copy editable in one place.
 - Browser storage holds only lesson-completion ticks (src/lib/progress.ts); reflection text stays in component memory — private writing must never persist without a secure backend.
+- Shop cover art and merchandising copy live separately from course data in src/lib/shop-editorial.ts; shop-only styles and an optional Shell width keep catalogue presentation isolated from lessons and other pages.

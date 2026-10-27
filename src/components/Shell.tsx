@@ -8,7 +8,7 @@ const NAV = [
   ["/coaching", "Coaching"],
 ] as const;
 
-export function Shell({ children }: { children: ReactNode }) {
+export function Shell({ children, mainClassName = "max-w-2xl" }: { children: ReactNode; mainClassName?: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -42,7 +42,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </nav>
       )}
       <div className="mx-auto max-w-5xl px-6"><div className="h-px bg-forest" /></div>
-      <main className="mx-auto max-w-2xl px-6 pb-16 pt-6">{children}</main>
+      <main className={`mx-auto px-6 pb-16 pt-6 ${mainClassName}`}>{children}</main>
       <footer className="mx-auto max-w-5xl border-t border-border px-6 py-8 text-center text-xs leading-relaxed text-muted-foreground">
         Educational self-reflection, not a diagnostic assessment or a substitute for mental health care.{" "}
         <Link to="/privacy" className="underline underline-offset-4">Privacy & safety</Link>

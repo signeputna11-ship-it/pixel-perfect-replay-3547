@@ -1,0 +1,55 @@
+.shop-editorial {
+  --shop-rose: oklch(0.79 0.057 8);
+  --shop-cover-border: color-mix(in oklab, var(--forest) 28%, transparent);
+  color: var(--forest);
+}
+.shop-intro { padding: 26px 0 34px; }
+.shop-intro h1 { font-size: 60px; line-height: 1.08; letter-spacing: 0; }
+.editorial-product { display: block; min-width: 0; color: var(--forest); outline-offset: 6px; }
+.editorial-product:focus-visible { outline: 2px solid var(--forest); }
+.editorial-cover { position: relative; height: 398px; overflow: hidden; background: var(--blush); }
+.editorial-money .editorial-cover { background: var(--butter); }
+.editorial-confidence .editorial-cover { background: var(--powder); }
+.editorial-love .editorial-cover { background: var(--shop-rose); }
+.cover-masthead { position: relative; z-index: 2; margin: 0 24px; padding: 16px 0 10px; border-bottom: 1px solid var(--shop-cover-border); display: flex; justify-content: space-between; gap: 8px; font-size: 9px; text-transform: uppercase; letter-spacing: 0; }
+.cover-collection { position: relative; z-index: 2; margin: 13px 24px 0; font-size: 9px; text-transform: uppercase; }
+.cover-headline { position: relative; z-index: 2; margin: 10px 24px 0; font-family: var(--font-display); font-size: 46px; line-height: .98; letter-spacing: 0; }
+.cover-photo { position: absolute; top: 169px; right: 32px; bottom: 35px; width: 61%; overflow: hidden; }
+.cover-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; transition: transform 600ms ease; }
+.editorial-worth .cover-photo { top: 172px; right: 28px; width: 70%; transform: rotate(-3deg); }
+.editorial-worth .cover-photo img { object-position: center 43%; }
+.editorial-money .cover-photo { top: 80px; right: 20px; bottom: 35px; width: 49%; }
+.editorial-money .cover-headline { margin-top: 38px; width: 53%; font-size: 42px; }
+.editorial-money .cover-headline em { display: inline-block; background: var(--butter); padding-right: 7px; }
+.editorial-confidence .cover-photo { top: 88px; right: 24px; bottom: 34px; width: 49%; border-radius: 130px 130px 0 0; }
+.editorial-confidence .cover-headline { margin-top: 55px; max-width: 60%; font-size: 44px; }
+.editorial-confidence .cover-headline em { display: inline-block; background: var(--powder); padding-right: 8px; }
+.editorial-love .cover-headline { text-align: center; }
+.editorial-love .cover-photo { width: 68%; right: 16%; top: 174px; bottom: 35px; transform: rotate(3deg); }
+.cover-footnote { position: absolute; z-index: 2; bottom: 10px; left: 24px; right: 24px; display: flex; align-items: center; justify-content: space-between; font-size: 9px; }
+.cover-footnote > span:last-child { font-family: var(--font-display); font-size: 19px; }
+.editorial-details { padding: 20px 2px 0; }
+.product-description { min-height: 44px; }
+.explore-label { text-underline-offset: 5px; }
+.editorial-product:hover .explore-label, .editorial-product:focus-visible .explore-label { text-decoration: underline; }
+.editorial-product:hover .cover-photo img { transform: scale(1.035); }
+.shop-audit { margin-top: 52px; padding: 30px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+@media (max-width: 639px) {
+  .shop-intro { padding: 20px 0 28px; }
+  .shop-intro h1 { font-size: 44px; max-width: 290px; }
+  .editorial-cover { height: 360px; }
+  .cover-masthead { margin: 0 18px; font-size: 8px; }
+  .cover-collection { margin-left: 18px; font-size: 8px; }
+  .cover-headline { margin-left: 18px; margin-right: 18px; font-size: 40px; }
+  .editorial-money .cover-headline, .editorial-confidence .cover-headline { font-size: 36px; }
+  .editorial-confidence .cover-headline { max-width: 64%; }
+  .editorial-worth .cover-photo { top: 156px; }
+  .editorial-love .cover-photo { top: 156px; width: 74%; right: 13%; }
+  .cover-footnote { left: 18px; right: 18px; font-size: 8px; }
+  .explore-label { font-size: 12px; }
+  .shop-audit { margin-top: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-photo img { transition: none; }
+  .editorial-product:hover .cover-photo img { transform: none; }
+}
