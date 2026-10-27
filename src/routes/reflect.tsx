@@ -44,7 +44,7 @@ function Reflect() {
           {STEPS.map((s, i) => (
             <label key={s.key} className="block">
               <span className="font-display text-xl">
-                <span className="mr-2 text-gold">{String(i + 1).padStart(2, "0")}</span>
+                <span className="mr-2 rounded-sm bg-butter px-1.5">{String(i + 1).padStart(2, "0")}</span>
                 {s.label}
               </span>
               <span className="mt-1 block text-sm text-muted-foreground">{s.hint}</span>
