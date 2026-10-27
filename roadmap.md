@@ -17,3 +17,4 @@
 - [ ] Course pages: headline, audience, challenges, curriculum accordion, included resources, time, Get Access, FAQ, creator, disclaimer
 - [ ] Use the uploaded curricula titles; Day 1 free, other days visibly locked (demo checkout)
 - [ ] Full written content for days 2+ (next phase — 31 lessons)
+- [ ] Real Stripe sales: sign-in, checkout, purchase checks, protected lessons, success/cancel pages, policies (blocked: needs paid Lovable plan + your go-ahead to replace workshop "no login/payments" scope)
