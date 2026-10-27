@@ -99,6 +99,56 @@ export const QUESTIONS: Question[] = [
       { label: "It might cost me freedom or relationships", pattern: "guard" },
     ],
   },
+  {
+    topic: "Boundaries",
+    prompt: "A client asks for 'one small extra' outside the agreed scope. You…",
+    options: [
+      { label: "Say yes, then over-deliver to make it perfect", pattern: "perfectionist" },
+      { label: "Do it for free — charging feels too much", pattern: "worth" },
+      { label: "Agree quickly so they stay happy with me", pattern: "approval" },
+      { label: "Say yes, but quietly pull back from growing the account", pattern: "guard" },
+    ],
+  },
+  {
+    topic: "Praise",
+    prompt: "Someone compliments your work in front of others. Inside, you…",
+    options: [
+      { label: "Think of the flaws they didn't notice", pattern: "perfectionist" },
+      { label: "Brush it off — anyone could have done it", pattern: "worth" },
+      { label: "Feel relief and want more of that feeling", pattern: "approval" },
+      { label: "Feel exposed, as if the spotlight is risky", pattern: "guard" },
+    ],
+  },
+  {
+    topic: "Decisions",
+    prompt: "Facing a big business decision, you tend to…",
+    options: [
+      { label: "Research until every risk is accounted for", pattern: "perfectionist" },
+      { label: "Doubt your judgement and defer to others", pattern: "worth" },
+      { label: "Poll people until you find the popular choice", pattern: "approval" },
+      { label: "Choose the option that keeps things smaller", pattern: "guard" },
+    ],
+  },
+  {
+    topic: "Rest",
+    prompt: "An unplanned free afternoon appears. You most likely…",
+    options: [
+      { label: "Fill it with tidying up unfinished work", pattern: "perfectionist" },
+      { label: "Feel you haven't earned the break", pattern: "worth" },
+      { label: "Check messages in case someone needs you", pattern: "approval" },
+      { label: "Rest — but avoid the project that could grow", pattern: "guard" },
+    ],
+  },
+  {
+    topic: "Relationships",
+    prompt: "In close relationships, you most often notice yourself…",
+    options: [
+      { label: "Trying to be the 'perfect' partner or friend", pattern: "perfectionist" },
+      { label: "Accepting less than you'd want for a friend", pattern: "worth" },
+      { label: "Adjusting your needs to keep the peace", pattern: "approval" },
+      { label: "Keeping some distance so no one can lose you", pattern: "guard" },
+    ],
+  },
 ];
 
 /** Deterministic: highest count wins; ties resolved by PATTERN_ORDER. */
@@ -111,3 +161,11 @@ export function scoreAnswers(answers: PatternId[]): PatternId {
 export function isPatternId(v: string): v is PatternId {
   return (PATTERN_ORDER as string[]).includes(v);
 }
+
+/** Product slugs recommended per pattern, most relevant first. */
+export const RECOMMENDATIONS: Record<PatternId, string[]> = {
+  perfectionist: ["unapologetically-confident", "self-worth-reset"],
+  worth: ["money-belief-reset", "self-worth-reset"],
+  approval: ["self-worth-reset", "stop-chasing-love"],
+  guard: ["unapologetically-confident", "money-belief-reset"],
+};
