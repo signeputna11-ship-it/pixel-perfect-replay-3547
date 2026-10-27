@@ -41,7 +41,7 @@ function Dashboard() {
                 <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-background/60">
                   <div className="h-full bg-forest" style={{ width: `${pct}%` }} />
                 </div>
-                <p className="mt-3 text-sm">Next: Day {completed + 1} · {p.curriculum[completed]}</p>
+                <p className="mt-3 text-sm">Next: Day {completed + 1} · {p.curriculum[completed]?.title}</p>
               </div>
             );
           })}

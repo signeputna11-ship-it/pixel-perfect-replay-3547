@@ -32,7 +32,7 @@ function Sample() {
       <Link to="/shop/$slug" params={{ slug: p.slug }} className="text-sm text-muted-foreground hover:underline">
         ← {p.name}
       </Link>
-      <div className="mt-6"><LessonView lesson={p.sample} /></div>
+      <div className="mt-6"><LessonView product={p} /></div>
     </Shell>
   );
 }
