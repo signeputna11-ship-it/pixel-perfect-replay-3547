@@ -2,6 +2,10 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face { font-family: "Instrument Serif"; src: url("/__l5e/assets-v1/9dc7e643-cc68-448c-a01a-fa79fead8096/InstrumentSerif-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("/__l5e/assets-v1/74c8e677-ad92-459d-ae2b-d7853273f50c/InstrumentSerif-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("/__l5e/assets-v1/ff552ad5-35a4-4774-930c-5f3120971367/DMSans-Variable.ttf") format("truetype"); font-weight: 100 1000; font-display: swap; }
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -44,8 +48,13 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-gold: var(--gold);
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Karla", system-ui, sans-serif;
+  --color-blush: var(--blush);
+  --color-powder: var(--powder);
+  --color-butter: var(--butter);
+  --color-navy: var(--navy);
+  --color-forest: var(--forest);
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
@@ -65,27 +74,28 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.966 0.011 75);
-  --foreground: oklch(0.29 0.02 60);
-  --card: oklch(0.985 0.007 75);
-  --card-foreground: oklch(0.29 0.02 60);
-  --popover: oklch(0.985 0.007 75);
-  --popover-foreground: oklch(0.29 0.02 60);
-  --primary: oklch(0.29 0.02 60);
-  --primary-foreground: oklch(0.966 0.011 75);
-  --secondary: oklch(0.92 0.015 70);
-  --secondary-foreground: oklch(0.29 0.02 60);
-  --muted: oklch(0.92 0.015 70);
-  --muted-foreground: oklch(0.52 0.025 55);
-  --accent: oklch(0.67 0.025 55);
-  --accent-foreground: oklch(0.985 0.007 75);
-  --gold: oklch(0.69 0.065 80);
+  --radius: 0.25rem;
+  --paper: #FFFCF8; --forest: #173D34; --blush: #E8BAC9; --powder: #BBDCF0; --butter: #F3E4A2; --navy: #102440;
+  --background: var(--paper);
+  --foreground: var(--forest);
+  --card: #FFFFFF;
+  --card-foreground: var(--forest);
+  --popover: #FFFFFF;
+  --popover-foreground: var(--forest);
+  --primary: var(--forest);
+  --primary-foreground: var(--paper);
+  --secondary: var(--powder);
+  --secondary-foreground: var(--navy);
+  --muted: color-mix(in oklab, var(--forest) 6%, var(--paper));
+  --muted-foreground: color-mix(in oklab, var(--forest) 70%, var(--paper));
+  --accent: var(--blush);
+  --accent-foreground: var(--forest);
+  --gold: var(--blush);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.87 0.018 65);
-  --input: oklch(0.87 0.018 65);
-  --ring: oklch(0.69 0.065 80);
+  --destructive-foreground: var(--paper);
+  --border: color-mix(in oklab, var(--forest) 22%, var(--paper));
+  --input: color-mix(in oklab, var(--forest) 22%, var(--paper));
+  --ring: var(--forest);
 }
 
 @layer base {
@@ -102,33 +112,33 @@
 @layer base {
   body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 }
-@utility font-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
-@utility eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted-foreground); }
+@utility font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.015em; }
+@utility eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted-foreground); }
 @utility btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   border-radius: 9999px; padding: 0.95rem 1.75rem; font-size: 0.9rem; letter-spacing: 0.02em;
   background: var(--primary); color: var(--primary-foreground); transition: all .3s;
-  &:hover { background: color-mix(in oklab, var(--primary) 85%, var(--gold)); transform: translateY(-1px); }
+  &:hover { background: var(--navy); transform: translateY(-1px); }
 }
 @utility btn-ghost {
   display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px;
   padding: 0.95rem 1.75rem; font-size: 0.9rem; border: 1px solid var(--border); transition: all .3s;
-  &:hover { border-color: var(--gold); }
+  &:hover { border-color: var(--forest); }
 }
 @utility btn-gold {
-  border-radius: 9999px; padding: 0.9rem 1.5rem; font-size: 0.9rem; background: var(--gold); color: var(--primary);
+  border-radius: 9999px; padding: 0.9rem 1.5rem; font-size: 0.9rem; background: var(--blush); color: var(--forest); font-weight: 500;
 }
 @utility option {
   display: block; width: 100%; text-align: left; padding: 1.1rem 1.25rem; border-radius: var(--radius);
   border: 1px solid var(--border); background: var(--card); line-height: 1.5; transition: all .25s;
-  &:hover { border-color: var(--gold); transform: translateX(3px); }
+  &:hover { border-color: var(--forest); background: color-mix(in oklab, var(--powder) 35%, var(--card)); transform: translateX(3px); }
 }
-@utility option-active { border-color: var(--gold); background: color-mix(in oklab, var(--gold) 12%, var(--card)); }
+@utility option-active { border-color: var(--forest); background: color-mix(in oklab, var(--blush) 40%, var(--card)); }
 @utility card-soft { border-radius: calc(var(--radius) + 6px); background: var(--card); border: 1px solid var(--border); padding: 1.75rem; }
 @utility field {
   width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: var(--card);
   padding: 0.85rem 1rem; font-size: 0.95rem; resize: vertical;
-  &:focus { outline: none; border-color: var(--gold); }
+  &:focus { outline: none; border-color: var(--forest); }
 }
 @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @utility fade-up { animation: fade-up .6s ease both; }
