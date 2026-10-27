@@ -8,3 +8,5 @@
 - [ ] Remaining lesson content (next phase)
 - [ ] Stripe checkout + server-side purchase access (waiting on Stripe setup)
 - [ ] Audio player with your uploads (waiting on your recordings)
+- [x] Exercises give a personal reflection back
+- [x] Result → first lesson button, member dashboard preview (sample), audio placeholder, mobile menu, privacy page
