@@ -5,6 +5,7 @@ import { getProduct } from "@/lib/products";
 
 export const Route = createFileRoute("/shop/$slug")({
   loader: ({ params }) => {
+    console.log("LOADER", params.slug, !!getProduct(params.slug));
     if (!getProduct(params.slug)) throw notFound();
     return { slug: params.slug };
   },
