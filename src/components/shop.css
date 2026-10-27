@@ -16,8 +16,8 @@
 .cover-headline { position: relative; z-index: 2; margin: 10px 24px 0; font-family: var(--font-display); font-size: 46px; line-height: .98; letter-spacing: 0; }
 .cover-photo { position: absolute; top: 169px; right: 32px; bottom: 35px; width: 61%; overflow: hidden; }
 .cover-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; transition: transform 600ms ease; }
-.editorial-worth .cover-photo { top: 172px; right: 28px; width: 70%; transform: rotate(-3deg); }
-.editorial-worth .cover-photo img { object-position: center 43%; }
+.editorial-worth .cover-photo { top: 163px; right: 42px; width: 48%; transform: rotate(-3deg); }
+.editorial-worth .cover-photo img { object-position: center 38%; }
 .editorial-money .cover-photo { top: 80px; right: 20px; bottom: 35px; width: 49%; }
 .editorial-money .cover-headline { margin-top: 38px; width: 53%; font-size: 42px; }
 .editorial-money .cover-headline em { display: inline-block; background: var(--butter); padding-right: 7px; }
