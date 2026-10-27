@@ -29,3 +29,18 @@ describe("products", () => {
     expect(getProduct("self-worth-reset")!.days).toBe(7);
   });
 });
+
+describe("courses", () => {
+  it("each curriculum has one entry per day", () => {
+    PRODUCTS.forEach((p) => expect(p.curriculum).toHaveLength(p.days));
+  });
+  it("free sample is Day 1 with three reflection questions", () => {
+    PRODUCTS.forEach((p) => {
+      expect(p.sample.day).toBe(1);
+      expect(p.sample.reflections).toHaveLength(3);
+    });
+  });
+  it("uses all six exercise types across the courses", () => {
+    expect(new Set(PRODUCTS.flatMap((p) => p.curriculum.map((d) => d.exercise))).size).toBe(6);
+  });
+});

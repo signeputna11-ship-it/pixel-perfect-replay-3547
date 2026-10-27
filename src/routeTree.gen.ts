@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuditRouteImport } from './routes/audit'
 import { Route as CoachingRouteImport } from './routes/coaching'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReflectRouteImport } from './routes/reflect'
-import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ResultPatternRouteImport } from './routes/result.$pattern'
+import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as ShopSlugRouteImport } from './routes/shop.$slug'
 import { Route as ShopSlugSampleRouteImport } from './routes/shop.$slug_.sample'
 
@@ -33,14 +35,19 @@ const CoachingRoute = CoachingRouteImport.update({
   path: '/coaching',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReflectRoute = ReflectRouteImport.update({
   id: '/reflect',
   path: '/reflect',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResultPatternRoute = ResultPatternRouteImport.update({
@@ -48,35 +55,44 @@ const ResultPatternRoute = ResultPatternRouteImport.update({
   path: '/result/$pattern',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopIndexRoute = ShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopSlugRoute = ShopSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/$slug',
+  path: '/shop/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ShopSlugSampleRoute = ShopSlugSampleRouteImport.update({
-  id: '/$slug_/sample',
-  path: '/$slug/sample',
-  getParentRoute: () => ShopRoute,
+  id: '/shop/$slug_/sample',
+  path: '/shop/$slug/sample',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/audit': typeof AuditRoute
   '/coaching': typeof CoachingRoute
+  '/dashboard': typeof DashboardRoute
+  '/privacy': typeof PrivacyRoute
   '/reflect': typeof ReflectRoute
-  '/shop': typeof ShopRouteWithChildren
   '/result/$pattern': typeof ResultPatternRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/shop/': typeof ShopIndexRoute
   '/shop/$slug/sample': typeof ShopSlugSampleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/audit': typeof AuditRoute
   '/coaching': typeof CoachingRoute
+  '/dashboard': typeof DashboardRoute
+  '/privacy': typeof PrivacyRoute
   '/reflect': typeof ReflectRoute
-  '/shop': typeof ShopRouteWithChildren
   '/result/$pattern': typeof ResultPatternRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/shop': typeof ShopIndexRoute
   '/shop/$slug/sample': typeof ShopSlugSampleRoute
 }
 export interface FileRoutesById {
@@ -84,10 +100,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/audit': typeof AuditRoute
   '/coaching': typeof CoachingRoute
+  '/dashboard': typeof DashboardRoute
+  '/privacy': typeof PrivacyRoute
   '/reflect': typeof ReflectRoute
-  '/shop': typeof ShopRouteWithChildren
   '/result/$pattern': typeof ResultPatternRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/shop/': typeof ShopIndexRoute
   '/shop/$slug_/sample': typeof ShopSlugSampleRoute
 }
 export interface FileRouteTypes {
@@ -96,30 +114,36 @@ export interface FileRouteTypes {
     | '/'
     | '/audit'
     | '/coaching'
+    | '/dashboard'
+    | '/privacy'
     | '/reflect'
-    | '/shop'
     | '/result/$pattern'
     | '/shop/$slug'
+    | '/shop/'
     | '/shop/$slug/sample'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/audit'
     | '/coaching'
+    | '/dashboard'
+    | '/privacy'
     | '/reflect'
-    | '/shop'
     | '/result/$pattern'
     | '/shop/$slug'
+    | '/shop'
     | '/shop/$slug/sample'
   id:
     | '__root__'
     | '/'
     | '/audit'
     | '/coaching'
+    | '/dashboard'
+    | '/privacy'
     | '/reflect'
-    | '/shop'
     | '/result/$pattern'
     | '/shop/$slug'
+    | '/shop/'
     | '/shop/$slug_/sample'
   fileRoutesById: FileRoutesById
 }
@@ -127,9 +151,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditRoute: typeof AuditRoute
   CoachingRoute: typeof CoachingRoute
+  DashboardRoute: typeof DashboardRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReflectRoute: typeof ReflectRoute
-  ShopRoute: typeof ShopRouteWithChildren
   ResultPatternRoute: typeof ResultPatternRoute
+  ShopSlugRoute: typeof ShopSlugRoute
+  ShopIndexRoute: typeof ShopIndexRoute
+  ShopSlugSampleRoute: typeof ShopSlugSampleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -155,18 +183,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoachingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reflect': {
       id: '/reflect'
       path: '/reflect'
       fullPath: '/reflect'
       preLoaderRoute: typeof ReflectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/result/$pattern': {
@@ -176,42 +211,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultPatternRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop/': {
+      id: '/shop/'
+      path: '/shop'
+      fullPath: '/shop/'
+      preLoaderRoute: typeof ShopIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop/$slug': {
       id: '/shop/$slug'
-      path: '/$slug'
+      path: '/shop/$slug'
       fullPath: '/shop/$slug'
       preLoaderRoute: typeof ShopSlugRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
     '/shop/$slug_/sample': {
       id: '/shop/$slug_/sample'
-      path: '/$slug/sample'
+      path: '/shop/$slug/sample'
       fullPath: '/shop/$slug/sample'
       preLoaderRoute: typeof ShopSlugSampleRouteImport
-      parentRoute: typeof ShopRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface ShopRouteChildren {
-  ShopSlugRoute: typeof ShopSlugRoute
-  ShopSlugSampleRoute: typeof ShopSlugSampleRoute
-}
-
-const ShopRouteChildren: ShopRouteChildren = {
-  ShopSlugRoute: ShopSlugRoute,
-  ShopSlugSampleRoute: ShopSlugSampleRoute,
-}
-
-const ShopRouteWithChildren = ShopRoute._addFileChildren(ShopRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditRoute: AuditRoute,
   CoachingRoute: CoachingRoute,
+  DashboardRoute: DashboardRoute,
+  PrivacyRoute: PrivacyRoute,
   ReflectRoute: ReflectRoute,
-  ShopRoute: ShopRouteWithChildren,
   ResultPatternRoute: ResultPatternRoute,
+  ShopSlugRoute: ShopSlugRoute,
+  ShopIndexRoute: ShopIndexRoute,
+  ShopSlugSampleRoute: ShopSlugSampleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
