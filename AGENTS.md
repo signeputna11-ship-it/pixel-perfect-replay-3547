@@ -11,3 +11,5 @@
 - Course/lesson/exercise content lives in src/lib (products.ts, exercises.ts, audit.ts); components only render it — keeps copy editable in one place.
 - Browser storage holds only lesson-completion ticks (src/lib/progress.ts); reflection text stays in component memory — private writing must never persist without a secure backend.
 - Shop cover art and merchandising copy live separately from course data in src/lib/shop-editorial.ts; shop-only styles and an optional Shell width keep catalogue presentation isolated from lessons and other pages.
+- Course helper grounds answers in shared course data and FAQ; server-only Lovable AI calls never accept browser-supplied facts, and handoff submissions require explicit consent.
+- Booking is a memory-only sample calendar with explicit non-reservation confirmation; private-offer copy lives separately from digital courses to preserve the workshop flow.

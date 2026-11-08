@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell } from "@/components/Shell";
 import { Button } from "@/components/ui/button";
+import { PrivateOffers } from "@/components/PrivateOffers";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import portrait from "@/assets/DSC01766.jpg.asset.json";
 import laughing from "@/assets/DSC01921.jpg.asset.json";
@@ -34,9 +35,9 @@ function Index() {
           </p>
           <div className="mt-8 flex flex-col items-start gap-4">
             <Button asChild className="discovery-cta h-auto min-h-16 w-full whitespace-normal rounded-full px-7 py-5 text-base sm:w-auto">
-              <a href="https://signecoach.com" target="_blank" rel="noreferrer">
+              <Link to="/booking">
                 Book Your Discovery Call <ArrowUpRight aria-hidden="true" />
-              </a>
+              </Link>
             </Button>
             <Button asChild variant="link" className="h-auto whitespace-normal px-0 py-2 text-sm">
               <Link to="/audit">Discover your self-belief pattern <ArrowRight aria-hidden="true" /></Link>
@@ -76,6 +77,7 @@ function Index() {
           <img src={sunlit.url} alt="Signe in the sunshine" className="h-full min-h-64 w-full object-cover" />
         </div>
       </section>
+      <PrivateOffers />
     </Shell>
   );
 }
