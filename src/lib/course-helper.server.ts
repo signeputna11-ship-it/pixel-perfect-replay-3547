@@ -2,6 +2,7 @@ import { Output } from "ai";
 import { z } from "zod";
 import { helperQuestionSchema, handoffSchema, courseHelperFacts } from "@/lib/course-helper";
 import { createResponsesCall } from "@/lib/ai/responses.server";
+import { withLovableAiGatewayRunIdHeader } from "@/lib/ai/run-id.server";
 
 const responseSchema = z.object({ answer: z.string(), handoff: z.boolean() }).strict();
 const limits = new Map<string, number>();
@@ -35,13 +36,17 @@ export async function answerCourseQuestion(request: Request) {
       upstreamFailure = { status: response.status, message };
       if ([402, 403].includes(response.status)) await supabaseAdmin.from("ai_helper_state").upsert({ id: "course-helper", status: response.status, message });
     });
-  // Start the browser stream immediately; no timeout or automatic replay.
+  // Wait only for upstream headers so access denials retain their HTTP status.
+  const consumption = call.result.output;
+  void consumption.catch(() => undefined);
+  await call.gateway.waitForRunId();
+  if (upstreamFailure) return Response.json({ message: upstreamFailure.message }, { status: upstreamFailure.status });
   const encoder = new TextEncoder();
   const body = new ReadableStream({ async start(controller) {
     const emit = (data: object) => controller.enqueue(encoder.encode(JSON.stringify(data) + "\n"));
     emit({ type: "pending" });
     try {
-      const result = await call.result.output;
+      const result = await consumption;
       if (upstreamFailure) emit({ type: "error", ...upstreamFailure });
       else if (!result?.answer?.trim()) emit({ type: "error", message: "No answer was returned. Please ask Signe directly." });
       else emit({ type: "answer", answer: result.answer, handoff: result.handoff });
@@ -49,7 +54,7 @@ export async function answerCourseQuestion(request: Request) {
       emit({ type: "error", message: upstreamFailure?.message ?? (request.signal.aborted ? "Stopped." : "The helper couldn't complete an answer. Please contact Signe."), status: upstreamFailure?.status });
     } finally { controller.close(); }
   } });
-  return new Response(body, { headers: { "Content-Type": "application/x-ndjson", "Cache-Control": "no-store" } });
+  return withLovableAiGatewayRunIdHeader(new Response(body, { headers: { "Content-Type": "application/x-ndjson", "Cache-Control": "no-store" } }), call.gateway);
 }
 export async function submitCourseQuestion(request: Request) {
   const denied = guard(request); if (denied) return denied;

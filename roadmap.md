@@ -1,7 +1,8 @@
 # Roadmap
-- [ ] Course question helper using Lovable AI and site facts; unanswered questions handed to Signe
-- [ ] Premium RTT Breakthrough and Comeback Inner Healing offers, clearly placeholder testimonials
-- [ ] Separate discovery booking page with sample calendar, intake and honest demo confirmation
+- [x] Course question helper using Lovable AI and site facts; consented handoffs stored privately for Signe
+- [x] Premium RTT Breakthrough and Comeback Inner Healing offers, clearly placeholder testimonials
+- [x] Separate discovery booking page with sample calendar, intake and honest demo confirmation
+- [ ] Email notifications for course questions (needs verified sender domain and Signe's recipient email)
 - [x] Premium homepage opening: emotional headline, spacious layout, prominent discovery-call link to Signe's existing website
 - [x] Redesign shop as an editorial collection; verify all four programme links and free audit on desktop and mobile
 - [x] Apply mood board brand (fonts, palette, color blocks)
