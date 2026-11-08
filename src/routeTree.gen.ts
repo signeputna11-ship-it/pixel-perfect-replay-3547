@@ -19,6 +19,8 @@ import { Route as ReflectRouteImport } from './routes/reflect'
 import { Route as ResultPatternRouteImport } from './routes/result.$pattern'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
 import { Route as ShopSlugRouteImport } from './routes/shop.$slug'
+import { Route as ApiPublicCourseHelperRouteImport } from './routes/api.public.course-helper'
+import { Route as ApiPublicCourseQuestionRouteImport } from './routes/api.public.course-question'
 import { Route as ShopSlugSampleRouteImport } from './routes/shop.$slug_.sample'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +73,16 @@ const ShopSlugRoute = ShopSlugRouteImport.update({
   path: '/shop/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicCourseHelperRoute = ApiPublicCourseHelperRouteImport.update({
+  id: '/api/public/course-helper',
+  path: '/api/public/course-helper',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCourseQuestionRoute = ApiPublicCourseQuestionRouteImport.update({
+  id: '/api/public/course-question',
+  path: '/api/public/course-question',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopSlugSampleRoute = ShopSlugSampleRouteImport.update({
   id: '/shop/$slug_/sample',
   path: '/shop/$slug/sample',
@@ -88,6 +100,8 @@ export interface FileRoutesByFullPath {
   '/result/$pattern': typeof ResultPatternRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/': typeof ShopIndexRoute
+  '/api/public/course-helper': typeof ApiPublicCourseHelperRoute
+  '/api/public/course-question': typeof ApiPublicCourseQuestionRoute
   '/shop/$slug/sample': typeof ShopSlugSampleRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +115,8 @@ export interface FileRoutesByTo {
   '/result/$pattern': typeof ResultPatternRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop': typeof ShopIndexRoute
+  '/api/public/course-helper': typeof ApiPublicCourseHelperRoute
+  '/api/public/course-question': typeof ApiPublicCourseQuestionRoute
   '/shop/$slug/sample': typeof ShopSlugSampleRoute
 }
 export interface FileRoutesById {
@@ -115,6 +131,8 @@ export interface FileRoutesById {
   '/result/$pattern': typeof ResultPatternRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/shop/': typeof ShopIndexRoute
+  '/api/public/course-helper': typeof ApiPublicCourseHelperRoute
+  '/api/public/course-question': typeof ApiPublicCourseQuestionRoute
   '/shop/$slug_/sample': typeof ShopSlugSampleRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +148,8 @@ export interface FileRouteTypes {
     | '/result/$pattern'
     | '/shop/$slug'
     | '/shop/'
+    | '/api/public/course-helper'
+    | '/api/public/course-question'
     | '/shop/$slug/sample'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +163,8 @@ export interface FileRouteTypes {
     | '/result/$pattern'
     | '/shop/$slug'
     | '/shop'
+    | '/api/public/course-helper'
+    | '/api/public/course-question'
     | '/shop/$slug/sample'
   id:
     | '__root__'
@@ -156,6 +178,8 @@ export interface FileRouteTypes {
     | '/result/$pattern'
     | '/shop/$slug'
     | '/shop/'
+    | '/api/public/course-helper'
+    | '/api/public/course-question'
     | '/shop/$slug_/sample'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +194,8 @@ export interface RootRouteChildren {
   ResultPatternRoute: typeof ResultPatternRoute
   ShopSlugRoute: typeof ShopSlugRoute
   ShopIndexRoute: typeof ShopIndexRoute
+  ApiPublicCourseHelperRoute: typeof ApiPublicCourseHelperRoute
+  ApiPublicCourseQuestionRoute: typeof ApiPublicCourseQuestionRoute
   ShopSlugSampleRoute: typeof ShopSlugSampleRoute
 }
 
@@ -245,6 +271,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/course-helper': {
+      id: '/api/public/course-helper'
+      path: '/api/public/course-helper'
+      fullPath: '/api/public/course-helper'
+      preLoaderRoute: typeof ApiPublicCourseHelperRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/course-question': {
+      id: '/api/public/course-question'
+      path: '/api/public/course-question'
+      fullPath: '/api/public/course-question'
+      preLoaderRoute: typeof ApiPublicCourseQuestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop/$slug_/sample': {
       id: '/shop/$slug_/sample'
       path: '/shop/$slug/sample'
@@ -266,6 +306,8 @@ const rootRouteChildren: RootRouteChildren = {
   ResultPatternRoute: ResultPatternRoute,
   ShopSlugRoute: ShopSlugRoute,
   ShopIndexRoute: ShopIndexRoute,
+  ApiPublicCourseHelperRoute: ApiPublicCourseHelperRoute,
+  ApiPublicCourseQuestionRoute: ApiPublicCourseQuestionRoute,
   ShopSlugSampleRoute: ShopSlugSampleRoute,
 }
 export const routeTree = rootRouteImport
