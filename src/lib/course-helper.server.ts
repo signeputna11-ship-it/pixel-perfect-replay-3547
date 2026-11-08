@@ -37,7 +37,7 @@ export async function answerCourseQuestion(request: Request) {
       if ([402, 403].includes(response.status)) await supabaseAdmin.from("ai_helper_state").upsert({ id: "course-helper", status: response.status, message });
     });
   // Wait only for upstream headers so access denials retain their HTTP status.
-  const consumption = call.result.output;
+  const consumption = Promise.resolve(call.result.output);
   void consumption.catch(() => undefined);
   await call.gateway.waitForRunId();
   if (upstreamFailure) return Response.json({ message: upstreamFailure.message }, { status: upstreamFailure.status });
