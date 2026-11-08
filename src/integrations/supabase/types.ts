@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_helper_state: {
+        Row: {
+          id: string
+          message: string
+          status: number
+        }
+        Insert: {
+          id: string
+          message: string
+          status: number
+        }
+        Update: {
+          id?: string
+          message?: string
+          status?: number
+        }
+        Relationships: []
+      }
+      course_question_submissions: {
+        Row: {
+          course_slug: string
+          created_at: string
+          email: string
+          id: string
+          question: string
+        }
+        Insert: {
+          course_slug: string
+          created_at?: string
+          email: string
+          id?: string
+          question: string
+        }
+        Update: {
+          course_slug?: string
+          created_at?: string
+          email?: string
+          id?: string
+          question?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
