@@ -1,5 +1,5 @@
 import { createOpenAI } from "@ai-sdk/openai";
-import { streamText, type ModelMessage } from "ai";
+import { streamText, type ModelMessage, type Output } from "ai";
 
 import {
   createLovableAiGatewayRunIdFetch,
@@ -12,13 +12,15 @@ export function createResponsesCall(
   config: { baseURL: string; apiKey: string; model: string },
   messages: ModelMessage[],
   instructions?: string,
+  output?: Output.Output<any, any, any>,
+  inspectResponse?: (response: Response) => Promise<void>,
 ) {
   const runIdFetch = createLovableAiGatewayRunIdFetch(getLovableAiGatewayRunId(request));
   const provider = createOpenAI({
     baseURL: `${config.baseURL.replace(/\/+$/, "").replace(/\/v1$/, "")}/v1`,
     apiKey: config.apiKey,
     headers: { "Lovable-API-Key": config.apiKey, "X-Lovable-AIG-SDK": "vercel-ai-sdk" },
-    fetch: runIdFetch.fetch,
+    fetch: async (input, init) => { const response = await runIdFetch.fetch(input, init); await inspectResponse?.(response); return response; },
   });
   const reasoning = config.model !== "openai/chat-latest";
   const result = streamText({
@@ -26,6 +28,8 @@ export function createResponsesCall(
     // AI SDK 6 lacks `instructions`: rename this key to `system` there.
     ...(instructions ? { instructions } : {}),
     messages,
+    output,
+    maxRetries: 0,
     abortSignal: request.signal,
     providerOptions: {
       openai: {
