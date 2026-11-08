@@ -14,7 +14,7 @@ export function CourseHelper({ slug, name }: { slug: string; name: string }) {
   const [consent, setConsent] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const controller = useRef<AbortController>();
+  const controller = useRef<AbortController | undefined>(undefined);
   useEffect(() => () => controller.current?.abort(), []);
   async function ask() {
     const parsed = helperQuestionSchema.safeParse({ slug, question });

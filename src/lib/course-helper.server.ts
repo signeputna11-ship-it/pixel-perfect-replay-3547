@@ -13,6 +13,7 @@ function guard(request: Request) {
   const now = Date.now(); const last = limits.get(key) ?? 0;
   if (now - last < 2000) return Response.json({ message: "Please wait a moment before sending another question." }, { status: 429 });
   if (limits.size > 1000) limits.clear(); limits.set(key, now);
+  return undefined;
 }
 export async function answerCourseQuestion(request: Request) {
   const denied = guard(request); if (denied) return denied;
