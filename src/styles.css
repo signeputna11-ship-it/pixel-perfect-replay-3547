@@ -142,3 +142,16 @@
 }
 @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @utility fade-up { animation: fade-up .6s ease both; }
+
+.home-hero .font-display { letter-spacing: 0; }
+.discovery-cta {
+  box-shadow: 0 6px 0 var(--blush);
+  transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.discovery-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--blush); }
+.discovery-cta:focus-visible { outline: 2px solid var(--forest); outline-offset: 7px; }
+@media (prefers-reduced-motion: reduce) {
+  .home-hero { animation: none; }
+  .discovery-cta { transition: none; }
+  .discovery-cta:hover { transform: none; }
+}
