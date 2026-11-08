@@ -5,6 +5,8 @@ import { getProduct } from "@/lib/products";
 import { EXERCISES } from "@/lib/exercises";
 import { useProgress } from "@/lib/progress";
 import portrait from "@/assets/DSC01766.jpg.asset.json";
+import { courseFAQ } from "@/lib/course-faq";
+import { CourseHelper } from "@/components/CourseHelper";
 
 export const Route = createFileRoute("/shop/$slug")({
   loader: ({ params }) => {
@@ -28,21 +30,13 @@ export const Route = createFileRoute("/shop/$slug")({
   component: ProductPage,
 });
 
-const FAQ = (days: number): [string, string][] => [
-  ["How do I get access?", "Checkout isn't open yet. When it is, you'll create an account and your programme will appear in your dashboard straight after a confirmed payment. Day 1 is free to try now."],
-  ["How long do I have access?", "The intended plan is ongoing access to the programme you buy. Signe will confirm the final terms before sales open."],
-  ["What's the refund policy?", "Not yet published. Signe is finalising refund and digital-content withdrawal terms, and they'll be shown here before checkout opens."],
-  ["Will it work on my phone?", "Yes. Lessons work in any modern browser on phone, tablet or computer. There's nothing to install."],
-  ["Is this therapy?", "No. This is an educational, RTT-informed self-reflection programme, not individual RTT therapy, diagnosis or treatment. If you're struggling, please speak to a qualified professional."],
-  ["What if a lesson brings up something difficult?", `Every one of the ${days} lessons has optional skip and pause controls and simple grounding guidance. You never have to finish an exercise.`],
-];
-
 function ProductPage() {
-  const p = getProduct(Route.useLoaderData().slug)!;
+  const p = getProduct(Route.useLoaderData().slug);
   const { progress } = useProgress();
   const [open, setOpen] = useState<number | null>(0);
   const [faq, setFaq] = useState<number | null>(null);
   const [tried, setTried] = useState(false);
+  if (!p) return null;
   const done = progress.completed[p.slug] ?? [];
   const resume = progress.last?.slug === p.slug;
   const kinds = [...new Set(p.curriculum.map((d) => d.exercise))];
@@ -137,7 +131,7 @@ function ProductPage() {
       <section className="mt-14">
         <p className="eyebrow">What's included</p>
         <ul className="mt-4 space-y-4 text-sm leading-relaxed">
-          <li><strong className="font-medium">{p.days} written lessons.</strong> Each has a short explanation, a realistic example, three reflection questions, a balanced belief and one real-life action.</li>
+          <li><strong className="font-medium">{p.days}-day planned curriculum; Day 1 available now.</strong> The free preview has a short explanation, a realistic example, three reflection questions, a balanced belief and one real-life action. Later lessons are not yet written.</li>
           <li><strong className="font-medium">Interactive exercises:</strong> {kinds.map((k) => EXERCISES[k].name).join(", ")}. Each one has an example you can load, skip controls and a summary.</li>
           <li><strong className="font-medium">Copy or download</strong> your reflections from any lesson as a text file.</li>
           <li><strong className="font-medium">Progress tracking</strong> so you can see which days you've completed.</li>
@@ -161,7 +155,7 @@ function ProductPage() {
       <section className="mt-14">
         <p className="eyebrow">Questions</p>
         <div className="mt-4 divide-y divide-border border-y border-border">
-          {FAQ(p.days).map(([q, a], i) => (
+          {courseFAQ(p.days).map(([q, a], i) => (
             <div key={q}>
               <button onClick={() => setFaq(faq === i ? null : i)} aria-expanded={faq === i} className="flex w-full justify-between gap-4 py-4 text-left">
                 <span className="font-medium">{q}</span><span aria-hidden className="shrink-0">{faq === i ? "–" : "+"}</span>
@@ -171,6 +165,8 @@ function ProductPage() {
           ))}
         </div>
       </section>
+
+      <CourseHelper key={p.slug} slug={p.slug} name={p.name} />
 
       <section className={`${p.color} mt-14 p-8`}>
         <h2 className="font-display text-3xl leading-tight">{p.name}</h2>
